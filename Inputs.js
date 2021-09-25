@@ -28,8 +28,8 @@ class Inputs extends Component {
                autoCapitalize = "none"
                onChangeText = {this.handleName}/>
              
-            <Button style = {styles.submitButton} title={"Greet!"} 
-            onPress ={ () => this.createGreeting(this.state.name)} />
+               <Button style = {styles.submitButton} title={"Greet!"} 
+               onPress ={ () => this.createGreeting(this.state.name)} />
        
          </View>
       )
