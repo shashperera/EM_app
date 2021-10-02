@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -21,3 +22,18 @@ return(
 };
 
 export default App;
+=======
+import React, { Component } from "react";
+import { View, StyleSheet, Button, Alert,TextInput } from "react-native";
+import Inputs from './Inputs.js'
+
+
+const App = () => {
+
+return (
+      <Inputs />
+   )
+};
+
+export default App;
+>>>>>>> 7124c8d2a8292535ccd66172806f2adacbdab2d1
