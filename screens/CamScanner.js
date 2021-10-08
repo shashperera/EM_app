@@ -159,7 +159,7 @@ export default class Cam extends Component {
       );
     } else {
       return (
-        <Image source={require('../assets/logo3.jpg')} style={styles.images} />
+        <Image source={require('../assets/logo2.png')} style={styles.images} />
       );
     }
   }

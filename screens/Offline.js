@@ -81,8 +81,6 @@ const Offline = ({ navigation }) => {
       );
     }
   }, [transactions]);
-   db().goOffline();
-
 
   return (
     <View style={styles.container}>
@@ -90,7 +88,10 @@ const Offline = ({ navigation }) => {
         <NetworkConsumer>
           {({ isConnected }) =>
             isConnected ? (
-              <Text style={styles.text}>Hello World!</Text>
+              <Button
+                title="Download your transactions while you are Offline"
+                onPress={() => Print.printAsync({ html })}
+              />
             ) : (
               ((<Text> No Network</Text>),
               (
@@ -99,7 +100,7 @@ const Offline = ({ navigation }) => {
                     <SafeAreaView style={styles.container}>
                       <Text> No Network</Text>
                       <Button
-                        title="Print your transactions while you are Offline"
+                        title="Download your transactions while you are Offline"
                         onPress={() => Print.printAsync({ html })}
                       />
 

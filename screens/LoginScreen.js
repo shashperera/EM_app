@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+
 import { Input, Button, Image } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
 import { auth } from '../firebase';
@@ -58,7 +59,10 @@ const LoginScreen = ({ navigation }) => {
         title: 'Login',
       });
     }
+    
   }, [navigation, loading]);
+
+  
 
   return (
     <>
@@ -66,12 +70,12 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.mainView}>
           <View style={styles.TopView}></View>
           <Image
-            source={require('../assets/logo2.png')}
+            source={require('../assets/logo3.png')}
             style={{ width: 100, height: 105, marginBottom: 30 }}
           />
 
           <View style={styles.BottomView}>
-            <Text style={styles.Heading}>Welcome{'\n'} Back</Text>
+            <Text style={styles.Heading}>Welcome{'\n'} </Text>
             <View style={styles.FormView}>
               <TextInput
                 style={styles.TextInput}
@@ -95,21 +99,24 @@ const LoginScreen = ({ navigation }) => {
                 <Text style={styles.ButtonText}>Sign In</Text>
               </TouchableOpacity>
             </View>
+            
             <TouchableOpacity
               style={styles.TextButton}
               onPress={() => navigation.navigate('Register')}>
               <Text style={styles.SignupText}>Sign Up</Text>
             </TouchableOpacity>
+
+            <View style={{marginLeft: 130}}>
+            <Text style={{color:'white'}}>{'\n'}Forgot Password</Text>
+          
+          </View>
           </View>
         </View>
       ) : (
         <View style={styles.container}>
           <StatusBar style="light" />
           <Image
-            source={{
-              uri:
-                'https://static-s.aa-cdn.net/img/gp/20600011886807/to-aGJ31KLwqc9AWaBUyL6NLbpFwN9VEliX7nQ_AU48aO4jH6M1MltWKmThWJPndJg=s300?v=1',
-            }}
+            source={require('../assets/logo3.png')}
             style={{ width: 100, height: 100, marginBottom: 50 }}
           />
           <Text h4>Loading...</Text>
@@ -144,7 +151,7 @@ const styles = StyleSheet.create({
   BottomView: {
     width: '100%',
     height: '80%',
-    backgroundColor: '#01497c',
+    backgroundColor: '#3490dc',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
@@ -154,14 +161,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 30,
     marginTop: 50,
-    marginBottom: 15,
+    marginBottom: 10,
+    alignSelf:'center',
   },
   FormView: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '40',
+    marginTop: '30',
   },
   TextInput: {
     width: '90%',
@@ -191,10 +199,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   SignupText: {
-    color: 'gray',
+    color: 'white',
     fontWeight: 'bold',
 
-    fontSize: 15,
+    fontSize: 16,
   },
   TextButton: {
     width: '100%',

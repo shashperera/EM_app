@@ -7,11 +7,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 // pages
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import CameraCapture from './screens/CameraCapture';
+
+import Splash from './screens/Splash';
+
 import RegisterScreen from './screens/RegisterScreen';
 import AddScreen from './screens/AddScreen';
 import UpdateScreen from './screens/UpdateScreen';
 import AllTransactions from './screens/AllTransactions';
 import Offline from './screens/Offline';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -26,11 +31,18 @@ export default function App() {
     },
     headerTintColor: 'black',
   };
+ 
   return (
+    
     <NavigationContainer>
       <StatusBar style="dark" />
       <Stack.Navigator screenOptions={globalScreenOptions}>
-        <Stack.Screen
+      <Stack.Screen
+          name=""
+          component={Splash}
+          options={{ headerShown: false }}
+        />
+    <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
@@ -40,13 +52,19 @@ export default function App() {
           component={RegisterScreen}
           options={{ headerShown: false }}
         />
+         <Stack.Screen
+          name="CameraCapture"
+          component={CameraCapture}
+        />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Off" component={Offline} />
 
         <Stack.Screen name="Add" component={AddScreen} />
         <Stack.Screen name="Update" component={UpdateScreen} />
         <Stack.Screen name="All" component={AllTransactions} />
+        
       </Stack.Navigator>
     </NavigationContainer>
-  );
-}
+    )}
+   
+

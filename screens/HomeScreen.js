@@ -148,6 +148,8 @@ const HomeScreen = ({navigation}) => {
                 {`Rs. ${income?.toFixed(2)}`}
               </Text>
             </View>
+            </View>            
+           <View style={styles.cardBottom}>            
             <View>
               <View style={styles.cardBottomSame}>
                 <Feather name='arrow-up' size={18} color='red' />
@@ -159,21 +161,14 @@ const HomeScreen = ({navigation}) => {
                 {`Rs. ${expense?.toFixed(2)}`}
               </Text>
             </View>
-          </View>
+            </View>
         </View>
 
         <View style={styles.recentTitle}>
           <Text h4 style={{color: '#4A2D5D'}}>
             Recent Transactions
           </Text>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={() => navigation.navigate('All')}
-          >
-            <Text style={styles.seeAll}>See All</Text>
-          </TouchableOpacity>
         </View>
-
         {filter?.length > 0 ? (
           <View style={styles.recentTransactions}>
             {filter?.slice(0, 3).map((info) => (
@@ -200,14 +195,14 @@ const HomeScreen = ({navigation}) => {
           activeOpacity={0.5}
           onPress={() => navigation.navigate('Home')}
         >
-          <AntDesign name='home' size={24} color='#66AFBB' />
+          <AntDesign name='home' size={24} color='blue' />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.plusButton}
           onPress={() => navigation.navigate('Add')}
           activeOpacity={0.5}
         >
-         <AntDesign name='plus' size={24} color='#66AFBB' />
+         <AntDesign name='plus' size={24} color='cyan' />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.plusButton}
@@ -241,7 +236,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   card: {
-    backgroundColor: '#535F93',
+    backgroundColor: '#00296b',
     alignItems: 'center',
     width: '100%',
     padding: 10,
@@ -258,10 +253,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   cardBottom: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: '50%',
     margin: 'auto',
+        marginBottom:20,
+
     backgroundColor: '#bbdefb',
     borderRadius: 5,
   },
@@ -269,6 +266,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom:20,
+
   },
   recentTitle: {
     flexDirection: 'row',
@@ -305,7 +304,7 @@ const styles = StyleSheet.create({
     elevation: 24,
   },
   plusButton: {
-    backgroundColor: '#535F93',
+    backgroundColor: '#00296b',
     padding: 10,
     borderRadius: 50,
     shadowColor: '#000',

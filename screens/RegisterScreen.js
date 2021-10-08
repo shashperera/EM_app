@@ -1,7 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useLayoutEffect, useState } from 'react';
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  KeyboardAvoidingView,
+  TextInput,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import { Input, Button, Text, Image } from 'react-native-elements';
+import * as ImagePicker from 'expo-image-picker';
+import { AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { IconButton, Colors } from 'react-native-paper';
 import { auth } from '../firebase';
 
 const RegisterScreen = ({ navigation }) => {
@@ -16,6 +27,35 @@ const RegisterScreen = ({ navigation }) => {
       headerBackTitle: 'Back to Login',
     });
   }, [navigation]);
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   const signUp = () => {
     if (fullName && email && password) {
@@ -47,73 +87,173 @@ const RegisterScreen = ({ navigation }) => {
     setImageUrl('');
   };
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <StatusBar style="light" />
-      <Image
-        source={{
-          uri:
-            'https://static-s.aa-cdn.net/img/gp/20600011886807/to-aGJ31KLwqc9AWaBUyL6NLbpFwN9VEliX7nQ_AU48aO4jH6M1MltWKmThWJPndJg=s300?v=1',
-        }}
-        style={{ width: 100, height: 100, marginBottom: 20 }}
-      />
-      <Text h4 style={{ marginBottom: 50 }}>
-        Create an account
-      </Text>
-      <View style={styles.inputContainer}>
-        <Input
-          placeholder="Full Name"
-          type="text"
-          autoFocus
-          value={fullName}
-          onChangeText={(text) => setFullName(text)}
-        />
-        <Input
-          placeholder="Email"
-          type="text"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <Input
-          placeholder="Password"
-          type="text"
-          value={password}
-          secureTextEntry
-          onChangeText={(text) => setPassword(text)}
-        />
-        <Input
-          placeholder="Profile Picture Url (Optional)"
-          type="text"
-          value={imageUrl}
-          onChangeText={(text) => setImageUrl(text)}
-          onSubmitEditing={signUp}
-        />
+    <View style={styles.mainView}>
+      <View style={styles.BottomView}>
+        <TouchableOpacity
+          style={styles.tc}
+          onPress={() => navigation.navigate('Login')}>
+          <Button
+            icon={<Icon name="arrow-left" size={20} color="white" />}
+          />
+        </TouchableOpacity>
+        <Text style={styles.Heading}>Create your {'\n'} Account</Text>
+        <View style={styles.FormView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Full Name"
+            placeholderTextColor={'#fff'}
+            autoFocus
+            value={fullName}
+            onChangeText={(text) => setFullName(text)}
+          />
+          <TextInput
+            style={styles.TextInput}
+            placeholder={'Email Address'}
+            keyboardType="email-address"
+            placeholderTextColor={'#fff'}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <TextInput
+            style={styles.TextInput}
+            placeholder={'Password'}
+            secureTextEntry={true}
+            placeholderTextColor={'#fff'}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <TouchableOpacity style={styles.Button2} onPress={pickImage}>
+            <Text> Profile picture </Text>
+            <FontAwesome5 name="camera" size={50} color="black" />
+            {image && (
+              <Image
+                source={{ uri: image }}
+                style={{
+                  width: 70,
+                  height: 70,
+                  borderRadius: 30,
+                  alignSelf: 'right',
+                }}
+              />
+            )}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={signUp}
+            loading={submitLoading}>
+            <Text style={styles.ButtonText}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <Button
-        containerStyle={styles.button}
-        title="Register"
-        onPress={signUp}
-        loading={submitLoading}
-      />
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  mainView: {
+    marginTop: 10,
     flex: 1,
-    alignItems: 'center',
+    flexDirection: 'column',
     justifyContent: 'center',
-    padding: 10,
-    backgroundColor: 'white',
+    alignItems: 'center',
   },
-  inputContainer: {
-    width: 300,
+  textStyle: {
+    color: 'blue',
+  },
+  tinyLogo: {
+    width: '30%',
+    height: '10%',
+    resizeMode: 'contain',
+  },
+  TopView: {
+    width: '100%',
+    height: '5%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  TextInput: {
+    width: '90%',
+    height: 52,
+    borderRadius: 10,
+    paddingLeft: 5,
+    borderWidth: 1,
+    marginTop: 20,
+    fontWeight: 'bold',
+    borderColor: '#fff',
+    color: '#fff',
+  },
+  Button: {
+    width: '90%',
+    color: '#000',
+    height: 52,
+    display: 'flex',
+    borderRadius: 10,
+    marginTop: 20,
+
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  Button2: {
+    width: '50%',
+    color: '#000',
+    height: 150,
+    display: 'flex',
+    borderRadius: 10,
+    marginTop: 20,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tc: {
+    width: '30%',
+    color: '#000',
+    height: 30,
+    display: 'flex',
+    marginLeft: 10,
+    marginTop: 20,
+    justifyContent: 'left',
+    alignItems: 'left',
+  },
+  ButtonText: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  SignupText: {
+    color: 'white',
+    fontWeight: 'bold',
+
+    fontSize: 16,
   },
   button: {
     width: 300,
     marginTop: 10,
+  },
+  BottomView: {
+    width: '100%',
+    height: '98%',
+    backgroundColor: '#3490dc',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+  Heading: {
+    color: '#fff',
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginLeft: 30,
+    marginTop: 30,
+    marginBottom: 10,
+    alignSelf: 'center',
+  },
+  FormView: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '30',
   },
 });
