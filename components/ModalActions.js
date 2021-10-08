@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import {FontAwesome, EvilIcons, FontAwesome5} from '@expo/vector-icons'
-import {db} from '../firebase'
+import {db} from '../services/firebase'
 
 const ModalActions = ({modalVisible, setModalVisible, navigation, id}) => {
   const deleteExpense = () => {

@@ -2,7 +2,7 @@ import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {ScrollView, StyleSheet, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import CustomListItem from '../components/CustomListItem'
-import {db, auth} from '../firebase'
+import { db, auth } from '../services/firebase';
 import {Text} from 'react-native-elements'
 import Swipeout from 'react-native-swipeout';
 

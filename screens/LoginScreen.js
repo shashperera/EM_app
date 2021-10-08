@@ -11,7 +11,7 @@ import {
 
 import { Input, Button, Image } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
-import { auth } from '../firebase';
+import { db, auth } from '../services/firebase';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');

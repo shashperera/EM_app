@@ -12,7 +12,7 @@ import LottieView from 'lottie-react-native';
 
 import { Input, Button, Image } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
-import { auth } from '../firebase';
+import { db, auth } from '../services/firebase';
 
 
 export default class Splash extends React.Component {

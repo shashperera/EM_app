@@ -55,7 +55,10 @@
     "@react-navigation/material-top-tabs": "6.0.2",
     "@react-native-community/datetimepicker": "3.5.2",
     "@react-navigation/material-bottom-tabs": "6.0.4",
-    "react-native-swipeout": "*"
+    "react-native-swipeout": "*",
+    "expo-constants": "~11.0.2",
+    "expo-notifications": "~0.12.3",
+    "@fortawesome/free-solid-svg-icons": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

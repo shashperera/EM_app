@@ -1,7 +1,7 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {StyleSheet, View, TouchableOpacity} from 'react-native'
 import {Text, Avatar, ListItem} from 'react-native-elements'
-import {auth, db} from '../firebase'
+import {auth, db} from '../services/firebase'
 import {StatusBar} from 'expo-status-bar'
 import {AntDesign, Feather, FontAwesome5} from '@expo/vector-icons'
 import CustomListItem from '../components/CustomListItem'

@@ -13,7 +13,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { IconButton, Colors } from 'react-native-paper';
-import { auth } from '../firebase';
+import { db, auth } from '../services/firebase';
 
 const RegisterScreen = ({ navigation }) => {
   const [fullName, setFullName] = useState('');
@@ -93,7 +93,7 @@ const RegisterScreen = ({ navigation }) => {
           style={styles.tc}
           onPress={() => navigation.navigate('Login')}>
           <Button
-            icon={<Icon name="arrow-left" size={20} color="white" />}
+            icon={<Icon name="arrow-left" size={15} color="white" />}
           />
         </TouchableOpacity>
         <Text style={styles.Heading}>Create your {'\n'} Account</Text>
