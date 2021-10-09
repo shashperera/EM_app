@@ -14,7 +14,7 @@ import { Picker } from '@react-native-picker/picker';
 import { db, auth } from '../services/firebase';
 import firebase from 'firebase';
 
-const AddScreen = ({ navigation }) => {
+const Limit = ({ navigation }) => {
   const [submitLoading, setSubmitLoading] = useState(false);
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -79,7 +79,6 @@ const AddScreen = ({ navigation }) => {
       <StatusBar style="dark" />
       <View style={styles.inputContainer}>
         <TextInput
-          h3
           style={styles.input}
           placeholder="Add Transaction Name"
           value={input}
@@ -113,13 +112,9 @@ const AddScreen = ({ navigation }) => {
         >
           {result ? result : new Date()}
         </Text>
-        <Text style={styles.input}>Expense Type </Text>
+
         <Picker
-          itemStyle={{
-            height: 90,
-            marginBottom: 50,
-            transform: [{ scaleX: 1 }, { scaleY: 1 }],
-          }}
+      
           selectedValue={selectedLanguage}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedLanguage(itemValue)
@@ -139,7 +134,7 @@ const AddScreen = ({ navigation }) => {
   );
 };
 
-export default AddScreen;
+export default Limit;
 
 const styles = StyleSheet.create({
   container: {
@@ -157,11 +152,10 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderBottomWidth: 1,
     marginBottom: 5,
-    fontSize: 20,
   },
   button: {
     width: 300,
-    marginTop: 30,
-    borderRadius: 15,
+    marginTop: 10,
+    borderRadius: 20,
   },
 });

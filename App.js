@@ -8,8 +8,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import CameraCapture from './screens/CameraCapture';
-
-import Splash from './screens/Splash';
+import Seemore from './screens/Seemore';
+import Splash from './components/Splash';
+import Limit from './screens/Limit';
 
 import RegisterScreen from './screens/RegisterScreen';
 import AddScreen from './screens/AddScreen';
@@ -31,40 +32,42 @@ export default function App() {
     },
     headerTintColor: 'black',
   };
- 
+
   return (
-    
     <NavigationContainer>
       <StatusBar style="dark" />
       <Stack.Navigator screenOptions={globalScreenOptions}>
-      <Stack.Screen
-          name=""
+        <Stack.Screen
+          name="Splash"
           component={Splash}
           options={{ headerShown: false }}
         />
-    <Stack.Screen
+        <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Limit"
+          component={Limit}
         />
         <Stack.Screen
           name="Register"
           component={RegisterScreen}
           options={{ headerShown: false }}
         />
-         <Stack.Screen
-          name="CameraCapture"
-          component={CameraCapture}
+        <Stack.Screen
+          name="Seemore"
+          component={Seemore}
         />
+        <Stack.Screen name="CameraCapture" component={CameraCapture} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Off" component={Offline} />
 
         <Stack.Screen name="Add" component={AddScreen} />
         <Stack.Screen name="Update" component={UpdateScreen} />
         <Stack.Screen name="All" component={AllTransactions} />
-        
       </Stack.Navigator>
     </NavigationContainer>
-    )}
-   
-
+  );
+}

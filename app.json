@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "myexpensetracker",
-    "slug": "snack-6ec3a507-e70c-4a8d-a7c9-5080bb0e8c5f",
+    "slug": "snack-b94d4d9e-6374-4f32-ad5b-dbaaec50cd7b",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Expense Tracker App\nS Perera\n"
   }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { Text, Avatar, ListItem } from 'react-native-elements';
 import { auth, db } from '../services/firebase';
 import { StatusBar } from 'expo-status-bar';
@@ -8,13 +8,10 @@ import {
   Feather,
   FontAwesome5,
   MaterialIcons,
-  Ionicons,
-  MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import CustomListItem from '../components/CustomListItem';
-import Navigation from '../components/Navigation';
 
-const HomeScreen = ({ navigation }) => {
+const Support = ({ navigation }) => {
   const signOutUser = () => {
     auth
       .signOut()
@@ -114,109 +111,43 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
+        <StatusBar style="dark" />
+        <Text style={styles.Heading}>About My Expense Tracker </Text>
+
         
-        <View style={styles.card}>
-          <View style={styles.cardTop}>
-            <Text style={{ textAlign: 'center', color: 'aliceblue' }}>
-              Total Balance
-            </Text>
-            <Text h3 style={{ textAlign: 'center', color: 'aliceblue' }}>
-              Rs. {totalBalance.toFixed(2)}
-            </Text>
-          </View>
-          <View style={styles.cardBottom}>
-            <View>
-              <View style={styles.cardBottomSame}>
-                <Feather name="arrow-down" size={18} color="green" />
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    marginLeft: 5,
-                  }}>
-                  Income
-                </Text>
-              </View>
-              <Text h4 style={{ textAlign: 'center' }}>
-                {`Rs. ${income?.toFixed(2)}`}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.cardBottom}>
-            <View>
-              <View style={styles.cardBottomSame}>
-                <Feather name="arrow-up" size={18} color="red" />
-                <Text style={{ textAlign: 'center', marginLeft: 5 }}>
-                  Expense
-                </Text>
-              </View>
-              <Text h4 style={{ textAlign: 'center' }}>
-                {`Rs. ${expense?.toFixed(2)}`}
-              </Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.recentTitle}>
-          <Text h4 style={{ color: 'black' }}>
-            Recent Transactions
-          </Text>
-        </View>
-        {filter?.length > 0 ? (
-          <View style={styles.recentTransactions}>
-            {filter?.slice(0, 3).map((info) => (
-              <View key={info.id}>
-                <CustomListItem
-                  info={info.data}
-                  navigation={navigation}
-                  id={info.id}
-                />
-              </View>
-            ))}
-          </View>
-        ) : (
-          <View style={styles.containerNull}>
-            <FontAwesome5 name="list-alt" size={24} color="#EF8A76" />
-            <Text h4 style={{ color: '#4A2D5D' }}>
-              No Transactions
-            </Text>
-          </View>
-        )}
-      </View>
-
-      <View style={styles.addButton}>
+        <View style={styles.mainView}>
+      <View style={styles.BottomView}>
         <TouchableOpacity
-          activeOpacity={0.5}
+          style={styles.tc}
           onPress={() => navigation.navigate('Home')}>
-          <FontAwesome5 name="home" size={24} color="#00509d" />
-          <Text style={{ color: 'grey', fontSize: 8 }}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Limit')}
-          activeOpacity={0.5}>
-          <MaterialCommunityIcons
-            name="clipboard-flow-outline"
-            size={24}
-            color="#00509d"
+          <Button
+            icon={<Icon name="arrow-left" size={15} color="white" />}
           />
-          <Text style={{ color: 'grey', fontSize: 8 }}> Limit</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Add')}
-          activeOpacity={0.5}>
-          <MaterialIcons name="add-circle" size={55} color="#3bdefb" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Off')}
-          activeOpacity={0.5}>
-          <Ionicons name="cash-outline" size={24} color="#00509d" />
-          <Text style={{ color: 'grey', fontSize: 8 }}> List</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => navigation.navigate('Seemore')}>
-          <MaterialIcons name="read-more" size={26} color="#00509d" />
-          <Text style={{ color: '#00509d', fontSize: 8 }}>More</Text>
-        </TouchableOpacity>
+        <Text style={styles.Heading}>About My Expense Tracke</Text>
+        <View style={styles.FormView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Full Name"
+            placeholderTextColor={'#fff'}
+            autoFocus
+            value={fullName}
+            onChangeText={(text) => setFullName(text)}
+          />
+          <TextInput
+            style={styles.TextInput}
+            placeholder={'Email Address'}
+            keyboardType="email-address"
+            placeholderTextColor={'#fff'}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+          
+   
+
+        </View>
+      </View>
+    </View>
       </View>
     </>
   );
@@ -236,7 +167,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   card: {
-    backgroundColor: '#00509d',
+    backgroundColor: '#00296b',
     alignItems: 'center',
     width: '100%',
     padding: 10,
@@ -258,6 +189,7 @@ const styles = StyleSheet.create({
     width: '50%',
     margin: 'auto',
     marginBottom: 20,
+
     backgroundColor: '#bbdefb',
     borderRadius: 5,
   },
@@ -302,7 +234,7 @@ const styles = StyleSheet.create({
     elevation: 24,
   },
   plusButton: {
-    backgroundColor: '#bbdefb',
+    backgroundColor: '#00296b',
     padding: 10,
     borderRadius: 50,
     shadowColor: '#000',

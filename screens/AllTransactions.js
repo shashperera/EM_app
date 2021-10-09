@@ -63,12 +63,7 @@ const AllTransactions = ({navigation}) => {
           <ScrollView>
             {filter?.map((info) => (
               <View key={info.id}>
-              <Swipeout {...sw}>
-        <Text style={styles.paragraph}>
-          {info.id}
-        </Text>
-         
-      </Swipeout >
+        
                 <CustomListItem
                   info={info.data}
                   navigation={navigation}

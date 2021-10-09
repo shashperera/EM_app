@@ -8,13 +8,12 @@ import {
   Feather,
   FontAwesome5,
   MaterialIcons,
-  Ionicons,
   MaterialCommunityIcons,
+  Ionicons,
 } from '@expo/vector-icons';
 import CustomListItem from '../components/CustomListItem';
-import Navigation from '../components/Navigation';
 
-const HomeScreen = ({ navigation }) => {
+const Seemore = ({ navigation }) => {
   const signOutUser = () => {
     auth
       .signOut()
@@ -114,75 +113,54 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
-        
-        <View style={styles.card}>
-          <View style={styles.cardTop}>
-            <Text style={{ textAlign: 'center', color: 'aliceblue' }}>
-              Total Balance
-            </Text>
-            <Text h3 style={{ textAlign: 'center', color: 'aliceblue' }}>
-              Rs. {totalBalance.toFixed(2)}
-            </Text>
-          </View>
-          <View style={styles.cardBottom}>
-            <View>
-              <View style={styles.cardBottomSame}>
-                <Feather name="arrow-down" size={18} color="green" />
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    marginLeft: 5,
-                  }}>
-                  Income
-                </Text>
-              </View>
-              <Text h4 style={{ textAlign: 'center' }}>
-                {`Rs. ${income?.toFixed(2)}`}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.cardBottom}>
-            <View>
-              <View style={styles.cardBottomSame}>
-                <Feather name="arrow-up" size={18} color="red" />
-                <Text style={{ textAlign: 'center', marginLeft: 5 }}>
-                  Expense
-                </Text>
-              </View>
-              <Text h4 style={{ textAlign: 'center' }}>
-                {`Rs. ${expense?.toFixed(2)}`}
-              </Text>
-            </View>
-          </View>
-        </View>
+        <StatusBar style="dark" />
 
-        <View style={styles.recentTitle}>
-          <Text h4 style={{ color: 'black' }}>
-            Recent Transactions
-          </Text>
-        </View>
-        {filter?.length > 0 ? (
-          <View style={styles.recentTransactions}>
-            {filter?.slice(0, 3).map((info) => (
-              <View key={info.id}>
-                <CustomListItem
-                  info={info.data}
-                  navigation={navigation}
-                  id={info.id}
-                />
+        <View style={styles.BottomView}>
+          <View style={{ flex: 1, flexDirection: 'column' }}>
+            <View style={{ flex: 5, flexDirection: 'row' }}>
+              <View style={styles.tile}>
+                <TouchableOpacity
+                  style={styles.Button2}
+                  onPress={() => navigation.navigate('All')}>
+                  <FontAwesome5 name="list-alt" size={80} color="#3490dc" />
+                  <Text color="#3490dc"> Transactions </Text>
+                </TouchableOpacity>
               </View>
-            ))}
+              <View style={styles.tile}>
+                <TouchableOpacity
+                  style={styles.Button2}
+                  onPress={() => navigation.navigate('Profile')}>
+                  <MaterialCommunityIcons
+                    name="face-profile"
+                    size={80}
+                    color="pink"
+                  />
+                  <Text color="pink"> Profile </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ flex: 5, flexDirection: 'row', marginBottom: 20 }}>
+              <View style={styles.tile}>
+                <TouchableOpacity
+                  style={styles.Button2}
+                  onPress={() => navigation.navigate('Support')}>
+                  <MaterialIcons name="support-agent" size={80} color="black" />
+                  <Text color="yellow"> Support </Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.tile}>
+                <TouchableOpacity
+                  style={styles.Button2}
+                  onPress={() => navigation.navigate('About')}>
+                  <FontAwesome5 name="info-circle" size={80} color="green" />
+                  <Text> About </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
-        ) : (
-          <View style={styles.containerNull}>
-            <FontAwesome5 name="list-alt" size={24} color="#EF8A76" />
-            <Text h4 style={{ color: '#4A2D5D' }}>
-              No Transactions
-            </Text>
-          </View>
-        )}
+        </View>
       </View>
-
+      
       <View style={styles.addButton}>
         <TouchableOpacity
           activeOpacity={0.5}
@@ -222,7 +200,7 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-export default HomeScreen;
+export default Seemore;
 
 const styles = StyleSheet.create({
   container: {
@@ -231,57 +209,32 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     padding: 10,
+    height: '80%',
   },
-  fullName: {
-    flexDirection: 'row',
-  },
-  card: {
-    backgroundColor: '#00509d',
-    alignItems: 'center',
-    width: '100%',
-    padding: 10,
+
+  Button2: {
+    width: '80%',
+    height: 150,
+    display: 'flex',
     borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-    marginVertical: 20,
-  },
-  cardTop: {
-    // backgroundColor: 'blue',
-    marginBottom: 20,
-  },
-  cardBottom: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    width: '50%',
-    margin: 'auto',
-    marginBottom: 20,
-    backgroundColor: '#bbdefb',
-    borderRadius: 5,
-  },
-  cardBottomSame: {
-    flexDirection: 'row',
+    marginTop: 20,
+    marginBottom: 10,
+    backgroundColor: '#e3f2fd',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  tile: {
+    width: '45%',
+    height: '25%',
+    marginRight: 20,
+    borderRadius: 13,
+    marginTop: 50,
     marginBottom: 20,
-  },
-  recentTitle: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
+    justifyContent: 'space-evenly',
   },
-  recentTransactions: {
-    backgroundColor: 'white',
-    width: '100%',
-  },
-  seeAll: {
-    fontWeight: 'bold',
-    color: 'green',
-    fontSize: 16,
-  },
+
   addButton: {
     position: 'absolute',
     bottom: 0,
@@ -302,7 +255,7 @@ const styles = StyleSheet.create({
     elevation: 24,
   },
   plusButton: {
-    backgroundColor: '#bbdefb',
+    backgroundColor: '#00296b',
     padding: 10,
     borderRadius: 50,
     shadowColor: '#000',
@@ -314,10 +267,14 @@ const styles = StyleSheet.create({
     shadowRadius: 16.0,
     elevation: 24,
   },
-  containerNull: {
+
+  BottomView: {
+    width: '100%',
+    height: '90%',
+    marginTop: 20,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
-    width: '100%',
   },
 });

@@ -70,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.mainView}>
           <View style={styles.TopView}></View>
           <Image
-            source={require('../assets/logo3.png')}
+            source={require('../assets/favicon.png')}
             style={{ width: 100, height: 105, marginBottom: 30 }}
           />
 
@@ -116,7 +116,7 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.container}>
           <StatusBar style="light" />
           <Image
-            source={require('../assets/logo3.png')}
+            source={require('../assets/favicon.png')}
             style={{ width: 100, height: 100, marginBottom: 50 }}
           />
           <Text h4>Loading...</Text>
