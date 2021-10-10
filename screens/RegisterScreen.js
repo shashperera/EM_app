@@ -160,21 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textStyle: {
-    color: 'blue',
-  },
-  tinyLogo: {
-    width: '30%',
-    height: '10%',
-    resizeMode: 'contain',
-  },
-  TopView: {
-    width: '100%',
-    height: '5%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
   TextInput: {
     width: '90%',
     height: 52,
@@ -223,19 +209,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   },
-  SignupText: {
-    color: 'white',
-    fontWeight: 'bold',
 
-    fontSize: 16,
-  },
-  button: {
-    width: 300,
-    marginTop: 10,
-  },
   BottomView: {
     width: '100%',
-    height: '98%',
+    height: '94%',
     backgroundColor: '#3490dc',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,

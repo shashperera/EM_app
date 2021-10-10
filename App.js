@@ -37,11 +37,7 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="dark" />
       <Stack.Navigator screenOptions={globalScreenOptions}>
-        <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{ headerShown: false }}
-        />
+        
         <Stack.Screen
           name="Login"
           component={LoginScreen}

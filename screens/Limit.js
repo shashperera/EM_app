@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   button: {
+    backgroundColor:'red',
     width: 300,
     marginTop: 30,
     borderRadius: 15,
